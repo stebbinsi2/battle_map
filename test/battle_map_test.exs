@@ -1,5 +1,6 @@
 defmodule BattleMap do
   use ExUnit.Case
+  alias BattleMap.Archer
   alias BattleMap.Barbarian
   alias BattleMap.Character
   alias BattleMap.Wizard
@@ -43,6 +44,19 @@ defmodule BattleMap do
       refute Character.can_attack?(%Wizard{}, {4, 4}, {2, 5})
       refute Character.can_attack?(%Wizard{}, {4, 4}, {3, 2})
       refute Character.can_attack?(%Wizard{}, {4, 4}, {6, 3})
+    end
+  end
+
+  describe "Archer" do
+    test "can attack only three spaces away" do
+      assert Character.can_attack?(%Archer{}, {4,4}, {7,7})
+      assert Character.can_attack?(%Archer{}, {4,4}, {6,7})
+      assert Character.can_attack?(%Archer{}, {4,4}, {7,1})
+      assert Character.can_attack?(%Archer{}, {4,4}, {1,2})
+    end
+
+    test "cannot attack squares too close, or too far" do
+      refute Character.can_attack?(%Archer{}, {4,4}, {4,2})
     end
   end
 end
