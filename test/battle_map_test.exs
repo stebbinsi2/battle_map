@@ -1,5 +1,9 @@
 defmodule BattleMap do
   use ExUnit.Case
+  alias BattleMap.Barbarian
+  alias BattleMap.Character
+  alias BattleMap.Wizard
+
 
   # You May Use The Following Test Suite To Validate Your Solution.
   describe "Barbarian" do
